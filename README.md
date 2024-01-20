@@ -24,8 +24,16 @@ _Note: press ctrl + C to stop the server_
 ```bash
 # clone the repo
 git clone <repo_url (required)> <folder_name (optional)>
-git status # check the status of the repo
-git add . # add all the files to staging
-git commit -m "commit message" # commit the changes
-git push # push the changes to remote
+
+# check the status of the repo
+git status
+
+# add all the files to staging
+git add .
+
+# commit the changes
+git commit -m "commit message"
+
+# push the changes to remote
+git push
 ```
