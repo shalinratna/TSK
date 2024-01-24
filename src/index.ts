@@ -13,25 +13,60 @@ function sub(a: number, b: number): number {
 
 // should return "Hello, <name>!"
 function greet(name: string): string {
-  return '';
+  return 'Hello, ' + name;
 }
 
 // should reverse the string
 // for example: "hello" -> "olleh"
 function reverseString(text: string): string {
-  return '';
+  let word : string[] = text.split("");
+  let finalWord: string = '';
+
+  for(let i = word.length - 1; i >= 0; i--){
+    finalWord += word[i];
+  }
+  return finalWord;
 }
 
 // find number of vowels in a string
 // for example: "hello" -> 2
 function findNumVowels(text: string): number {
-  return 0;
+
+  let word : string[] = text.split("");
+  let numVowes : number = 0;
+
+  for(let i = 0; i < word.length; i++){
+    if(vowelExists(word[i])){
+      numVowes ++;
+    }
+  }
+
+  return numVowes;
+}
+
+//Helper function for findNumValues()
+function vowelExists(letter: string) : boolean {
+  
+  // Just using lowercase for now can obviously be changed later, but this does not matter anyways
+  if(letter.toLowerCase() == "a" || letter.toLowerCase() == "e" || letter.toLowerCase() == "i" || letter.toLowerCase() == "o" || letter.toLowerCase() == "u"){
+      return true;
+  }
+
+  return false;
+
 }
 
 // should return the largest number
 // for example: [1, 2, 3] -> 3
 function findLargestNum(nums: number[]): number {
-  return 0;
+  let highestNum : number = 0;
+  for(let i = 0; i < nums.length; i++){
+    if(nums[i] >= highestNum){
+      highestNum = nums[i];
+    }
+  }
+
+  return highestNum;
 }
 
 // define main function
@@ -49,5 +84,11 @@ function main() {
   formatLog(`${subA} - ${subB} = ${subResult}`);
 }
 
+
 // call main function
 main();
+
+console.log("Greeting: " + greet("Shalin"));
+console.log("Reverse String: " + reverseString("hello"));
+console.log("Number of vowels: " + findNumVowels("hello"));
+console.log("Highest number: " + findLargestNum([1, 2, 3]));
