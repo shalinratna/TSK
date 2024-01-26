@@ -1,5 +1,5 @@
-function formatLog(message: string): void {
-  console.log(message);
+function formatLog(...messages: any[]): void {
+  console.log(...messages);
   console.log('----------------------------------------');
 }
 
@@ -72,7 +72,60 @@ function findLargestNum(nums: number[]): number {
   return highestNum;
 }
 
-// define main function
+type User = {
+  name: string;
+  status: 'active' | 'inactive';
+};
+
+/*
+should return users names where their status is 'active'
+for example:
+input: [
+  { name: 'Andre', status: 'active' },
+  { name: 'Bilal', status: 'inactive' },
+  { name: 'Christy', status: 'inactive' },
+  { name: 'Desiree', status: 'active' },
+]
+output: ['Andre', 'Desiree']
+*/
+function getActiveUserNames(users: User[]): string[] {
+  return [];
+}
+
+/*
+should return a unique list of strings
+for example:
+input: ['a', 'b', 'a', 'b', 'c']
+output: ['a', 'b', 'c']
+*/
+function getUniqueStrings(strings: string[]): string[] {
+  return [];
+}
+
+/*
+takes in an object and an array of keys
+should return a new object that only contains the keys/values for the keys that are passed in
+if a key does not exist in the object, return it with a value of null
+for example:
+input: obj: { a: 1, b: 2, c: 3 }, keys: ['a', 'c', 'd']
+output: { a: 1, c: 3, d: null }
+*/
+function pick(obj: object, keys: string[]): object {
+  return {};
+}
+
+/*
+takes in an object and an array of keys
+should return a new object that only contains the keys/values for the keys that are NOT passed in
+if a key does not exist in the object, return it with a value of null
+for example:
+input: obj: { a: 1, b: 2, c: 3 }, keys: ['a', 'c', 'd']
+output: { b: 2, d: null }
+*/
+function omit(obj: object, keys: string[]): object {
+  return {};
+}
+
 function main() {
   formatLog(`Let's get started!!!`);
 
@@ -85,12 +138,25 @@ function main() {
   const subB = 3;
   const subResult = sub(addA, addB);
   formatLog(`${subA} - ${subB} = ${subResult}`);
+
+  formatLog(`Greeting: ${greet('Shalin')}`);
+  formatLog(`Reverse String: ${reverseString('hello')}`);
+  formatLog(`Number of vowels: ${findNumVowels('hello')}`);
+  formatLog(`Highest number: ${findLargestNum([1, 2, 3])}`);
+
+  const users: User[] = [
+    { name: 'Andre', status: 'active' },
+    { name: 'Bilal', status: 'inactive' },
+    { name: 'Christy', status: 'inactive' },
+    { name: 'Desiree', status: 'active' },
+  ];
+  formatLog('Active user names:', getActiveUserNames(users));
+
+  formatLog('Unique Strings:', getUniqueStrings(['a', 'b', 'a', 'b', 'c']));
+
+  formatLog('Pick:', pick({ a: 1, b: 2, c: 3 }, ['a', 'c', 'd']));
+
+  formatLog('Omit:', omit({ a: 1, b: 2, c: 3 }, ['a', 'c', 'd']));
 }
 
-// call main function
 main();
-
-console.log('Greeting: ' + greet('Shalin'));
-console.log('Reverse String: ' + reverseString('hello'));
-console.log('Number of vowels: ' + findNumVowels('hello'));
-console.log('Highest number: ' + findLargestNum([1, 2, 3]));
