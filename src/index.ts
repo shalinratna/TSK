@@ -13,13 +13,13 @@ function sub(a: number, b: number): number {
 
 // should return "Hello, <name>!"
 function greet(name: string): string {
-  return 'Hello, ' + name;
+  return `Hello, ${name}!`;
 }
 
 // should reverse the string
 // for example: "hello" -> "olleh"
 function reverseString(text: string): string {
-  let word: string[] = text.split('');
+  const word: string[] = text.split('');
   let finalWord: string = '';
 
   for (let i = word.length - 1; i >= 0; i--) {
@@ -28,40 +28,37 @@ function reverseString(text: string): string {
   return finalWord;
 }
 
+// Helper function for findNumValues()
+function vowelExists(letter: string): boolean {
+  const isVowel: boolean =
+    letter.toLowerCase() === 'a' ||
+    letter.toLowerCase() === 'e' ||
+    letter.toLowerCase() === 'i' ||
+    letter.toLowerCase() === 'o' ||
+    letter.toLowerCase() === 'u';
+  return isVowel;
+}
+
 // find number of vowels in a string
 // for example: "hello" -> 2
 function findNumVowels(text: string): number {
-  let word: string[] = text.split('');
-  let numVowes: number = 0;
+  const word: string[] = text.split('');
+  let numVowels: number = 0;
 
   for (let i = 0; i < word.length; i++) {
     if (vowelExists(word[i])) {
-      numVowes++;
+      numVowels++;
     }
   }
 
-  return numVowes;
-}
-
-//Helper function for findNumValues()
-function vowelExists(letter: string): boolean {
-  // Just using lowercase for now can obviously be changed later, but this does not matter anyways
-  if (
-    letter.toLowerCase() == 'a' ||
-    letter.toLowerCase() == 'e' ||
-    letter.toLowerCase() == 'i' ||
-    letter.toLowerCase() == 'o' ||
-    letter.toLowerCase() == 'u'
-  ) {
-    return true;
-  }
-
-  return false;
+  return numVowels;
 }
 
 // should return the largest number
 // for example: [1, 2, 3] -> 3
 function findLargestNum(nums: number[]): number {
+  // const largest = Math.max(...nums);
+  // return largest;
   let highestNum: number = 0;
   for (let i = 0; i < nums.length; i++) {
     if (nums[i] >= highestNum) {
@@ -99,7 +96,34 @@ input: ['a', 'b', 'a', 'b', 'c']
 output: ['a', 'b', 'c']
 */
 function getUniqueStrings(strings: string[]): string[] {
-  return [];
+  const uniqueStrings: string[] = [];
+  let counter = 0;
+  // for (let i = 0; i < strings.length; i++) {
+  //   counter += 1;
+
+  //   if (!uniqueStrings.includes(strings[i])) {
+  //     uniqueStrings.push(strings[i]);
+  //     counter += uniqueStrings.length;
+  //   }
+  // }
+  // console.log({ counter });
+  // return uniqueStrings;
+
+  const stringRef: Record<string, true> = {};
+
+  for (let i = 0; i < strings.length; i++) {
+    const value = strings[i];
+    const exists = stringRef[value];
+    if (!exists) {
+      stringRef[value] = true;
+      uniqueStrings.push(value);
+    }
+    counter += 1;
+  }
+
+  console.log({ counter, stringRef });
+
+  return uniqueStrings;
 }
 
 /*
@@ -152,7 +176,10 @@ function main() {
   ];
   formatLog('Active user names:', getActiveUserNames(users));
 
-  formatLog('Unique Strings:', getUniqueStrings(['a', 'b', 'a', 'b', 'c']));
+  formatLog(
+    'Unique Strings:',
+    getUniqueStrings(['a', 'b', 'a', 'b', 'c', 'a', 'b', 'c', 'a', 'b', 'a', 'b', 'c', 'a', 'b', 'c']),
+  );
 
   formatLog('Pick:', pick({ a: 1, b: 2, c: 3 }, ['a', 'c', 'd']));
 
