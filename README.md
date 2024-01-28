@@ -11,10 +11,16 @@ cd ./TSK
 npm install
 
 # run in watch mode
-npm run dev
+npm run start:watch
 
 # run without watch mode
-npm run start
+npm start
+
+# run tests
+npm test
+
+# run tests watch mode
+npm run test:watch
 ```
 
 _Note: press ctrl + C to stop the server_
